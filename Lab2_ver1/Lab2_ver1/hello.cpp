@@ -55,7 +55,7 @@ int main()
 	for(i = 0; i < NMAX-1; i++) // NMAX-1 because [i+1]
 	{
 		ArrQuotent[i] = ArrGeomProgression[i+1]* 1.0 / ArrGeomProgression[i] ; //find 
-        //cout << "ArrQuotent[" << i <<"]=" << ArrQuotent[i] << endl;
+		//cout << "ArrQuotent[" << i <<"]=" << ArrQuotent[i] << endl;
 	
 	}
 
@@ -65,7 +65,7 @@ int main()
 			{
 				Count++;
 				//cout << "count" << Count << endl;
-		    }
+			}
 		else
 		{
 			if (Count > MaxCount)
@@ -95,7 +95,7 @@ int main()
 				for ( j = i+1 - MaxCount; j < i + 1 + MaxCount; j++)
 				{
 					cout << ArrGeomProgression[j] << "[j]="<< j << endl;
-			        cout << "error1" << endl;
+					cout << "error1" << endl;
 				}
 		}
 		else
