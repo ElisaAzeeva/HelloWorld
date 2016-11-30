@@ -32,45 +32,75 @@ using namespace std;
 int main()
 {
 
-	//-------------------- Constants --------------------//
-	
-	const int NMAX = 8;
-	// const FileName
+    //-------------------- Constants --------------------//
+    
+    const int NMAX = 8;    // Length of initial sequence
+    // const FileName
 
-	//-------------------- Variables --------------------//
+    //-------------------- Variables --------------------//
 
-	double seq[NMAX] = { 1,3, 9,81 ,1,2,4, 8};
-	//double seq[NMAX] = { 1,2,4, 8,16,32, 64,128 };  // initial sequence
-	double currentQ = seq[1]/seq[0];				// denominator of current subsequence
-	int i = 1;                                      // for loop
-	int endPrevSeq = 0;                             // points at end of current subsequence
-
-	int l = -1;                                     // length of current subsequence
-	int maxL = -1;                                  // length of subsequence wihh max length
+    //double seq[NMAX] = { 1,0, 1,0, 1,0, 1,0 };
+     double seq[NMAX] = { 1,3, 9,81 ,1,2,4, 8};
+    //double seq[NMAX] = { 1,2,4, 8,16,32, 64,128 };  // initial sequence
 
 
-	//-------------------- The program --------------------// 
-	while (i<(NMAX-1))
-	{
-		while (i<(NMAX-1) && currentQ==(seq[i + 1] / seq[i]))
-			i++;
+    double currentQ;        // Denominator of current subsequence
+    int i,j;                // For loop
+    int endPrevSeq;         // Points at end of current subsequence
+                           
+    int len;                // Length of current subsequence
+    int currentFirstElement;// First Element of current subsequence
 
-		// now i points at the end of current subseqvense.
-		// length on current seq. = i + 1 - endPrevSeq;
+    int maxL = -1;          // Length of subsequence with max length
+    double maxQ;            // Denominator of subsequence with max length
+    double maxFirstElement; // First Element of subsequence with max length
 
-		l = i + 1 - endPrevSeq;
-		endPrevSeq = i ;
-		maxL = (maxL > l) ? maxL : l;
+    //-------------------- The program --------------------// 
+    cout << "FOUND SUBSEQUANCE: " << endl;
 
-		cout << "Q: " << currentQ << "\tl: " << l <<  endl;
+    i = 0;
+    while (i<(NMAX-1)) // While sequence not end 
+    {
+        currentQ = seq[i + 1] / seq[i]; // Calculate current denominator
+        endPrevSeq = i;                 // Calculate end of previous subsequence 
 
-		l = 2;
-		currentQ = (seq[i + 1] / seq[i]);
-		i++;
-	}
-	cout << "maxl: " << maxL << endl;
+        // While next element is part of current subsequence
+        while (i < (NMAX - 1) && currentQ == (seq[i + 1] / seq[i])) 
+        {
+            i++;
+        }
+        // Now i points at the end of current subsequence.
+        // Length of current seq. = i - endPrevSeq + 1
+        // (+1 because index of first element of current seq. is last element of previous.)
+        
+        len = i - endPrevSeq + 1; // calculate length of current subsequence.
+        currentFirstElement = seq[endPrevSeq]; // remember first element of current subsequence
+        
+        // Write current subsequence
+        for (j = 0; j < len; j++)
+        {
+            cout << currentFirstElement * pow(currentQ, j) << "  ";
+        }
+        cout << endl;
 
-	getchar();
-	getchar();
+        // If previous sub-seq. less than current then remember current sub-seq.
+        if (maxL < len) 
+        {
+            maxL = len;
+            maxQ = currentQ;
+            maxFirstElement = currentFirstElement;
+        }
+    }
+
+    // Write subsequence with max length
+    cout << "SUBSEQUANCE WIHT MAX LENGTH: " << endl;
+    for (i = 0; i < maxL; i++)
+    {
+        cout << maxFirstElement * pow(maxQ, i) << "  ";
+    }
+
+    // Wait for input
+    cin.get();
+
 } // End of Main
   /********** End of file "Main.cpp" **********/
