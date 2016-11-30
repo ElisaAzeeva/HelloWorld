@@ -160,7 +160,7 @@ int main()
 
         // While next element is part of current subsequence.
         // Search for end of current subsequence.
-        while (i < (N - 1) && currentQ == (seq[i + 1] / seq[i])) 
+        while (i < (N - 1) && currentQ == ((0 == seq[i + 1]) ? 0 : (seq[i + 1] / seq[i])))
         {
             i++;
         } // end while
