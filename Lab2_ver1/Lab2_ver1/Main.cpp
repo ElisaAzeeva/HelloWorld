@@ -15,7 +15,7 @@
 *---------------------------------------------------------*
 *                     ВАРИАНТ № 5.1                       *
 *В файле исходных данных содержится одномерный массив,    *
-*состоящий из п чисел. Написать, отладить и протестировать*
+*состоящий из n чисел. Написать, отладить и протестировать*
 *программу, выполняющую:                                  *
 *1. Чтение данных из файла.                               *
 *2. Определение в исходном массиве самой длинной          *
@@ -45,6 +45,7 @@ int main()
     int N;                  // True length of initial sequence.
 
     double currentQ;        // Denominator of current subsequence
+    double b;               // Current sequence element.
     int i,j;                // For loop
     int endPrevSeq;         // Points at end of current subsequence
                            
@@ -142,8 +143,20 @@ int main()
     i = 0;
     while (i<(N-1)) // While sequence not end 
     {
-        currentQ = seq[i + 1] / seq[i]; // Calculate current denominator.
-        endPrevSeq = i;                 // Calculate end of previous subsequence.
+        // If current element equals zero and next not zero then
+        // we can't calculete denominator 
+        if ((0 == seq[i]) && (0 != seq[i + 1])) 
+        {
+            // Increment counter and sikip current iteration.
+            i++;
+            continue;
+        } // end if
+        //Now we can calculete denominator 
+
+        // Calculate current denominator and end of previous subsequence.
+        // If numerator equals zero than fraction equals zero too.
+        currentQ = (0 == seq[i + 1])? 0 : (seq[i + 1] / seq[i]);
+        endPrevSeq = i;
 
         // While next element is part of current subsequence.
         // Search for end of current subsequence.
@@ -151,18 +164,20 @@ int main()
         {
             i++;
         } // end while
+
         // Now i points at the end of current subsequence.
         // Length of current seq. = i - endPrevSeq + 1
         // (+1 because first element of current seq. is last element of previous.)
         
-        len = i - endPrevSeq + 1; // calculate length of current subsequence.
-        currentFirstElement = seq[endPrevSeq]; // remember first element of current subsequence
+        len = i - endPrevSeq + 1; // Calculate length of current subsequence.
+        currentFirstElement = seq[endPrevSeq]; // Remember first element of current subsequence.
         
-        // Write current subsequence
+        // Write current subsequence.
         for (j = 0; j < len; j++)
         {
-            cout << currentFirstElement * pow(currentQ, j) << "  ";
-            fout << currentFirstElement * pow(currentQ, j) << "  ";
+            b = currentFirstElement * pow(currentQ, j);
+            cout << b << "  ";
+            fout << b << "  ";
         } // end for
         cout << endl;
         fout << endl;
@@ -181,8 +196,9 @@ int main()
     fout << "FIRST SUBSEQUENCE WITH MAX LENGTH: " << endl;
     for (i = 0; i < maxL; i++)
     {
-        cout << maxFirstElement * pow(maxQ, i) << "  ";
-        fout << maxFirstElement * pow(maxQ, i) << "  ";
+        b = maxFirstElement * pow(maxQ, i);
+        cout << b << "  ";
+        fout << b << "  ";
     } // end for
 
     cin.get(); // Wait for input.
