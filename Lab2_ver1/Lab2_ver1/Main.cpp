@@ -64,7 +64,7 @@ int main()
     if (!fin)
     {
         cout << "\tError: input file: " << INPUT_FILE_NAME 
-             <<  " dosen't exist!" << endl;
+             <<  " doesn't exist!" << endl;
 
         fin.close();
         cin.get(); // Wait for input
@@ -101,7 +101,7 @@ int main()
     // Check array length.
     if (N > NMAX)
     {
-        cout << "\tError: sequance length can't be bigger than " 
+        cout << "\tError: sequence length can't be bigger than " 
              << NMAX << endl;
 
         fin.close();
@@ -110,7 +110,7 @@ int main()
     } 
     else if (N < 2)
     {
-        cout << "\tError: sequance length can't be less than 2" << endl;
+        cout << "\tError: sequence length can't be less than 2" << endl;
 
         fin.close();
         cin.get(); // Wait for input
@@ -144,14 +144,14 @@ int main()
     while (i<(N-1)) // While sequence not end 
     {
         // If current element equals zero and next not zero then
-        // we can't calculete denominator 
+        // we can't calculate denominator 
         if ((0 == seq[i]) && (0 != seq[i + 1])) 
         {
-            // Increment counter and sikip current iteration.
+            // Increment counter and skip current iteration.
             i++;
             continue;
         } // end if
-        //Now we can calculete denominator 
+        //Now we can calculate denominator 
 
         // Calculate current denominator and end of previous subsequence.
         // If numerator equals zero than fraction equals zero too.
