@@ -56,7 +56,7 @@ int main()
     double maxFirstElement; // First Element of subsequence with max length
 
     //-------------------- The program --------------------// 
-    cout << "FOUND SUBSEQUANCE: " << endl;
+    cout << "FOUND SUBSEQUENCE: " << endl;
 
     i = 0;
     while (i<(NMAX-1)) // While sequence not end 
@@ -93,7 +93,7 @@ int main()
     }
 
     // Write subsequence with max length
-    cout << "SUBSEQUANCE WIHT MAX LENGTH: " << endl;
+    cout << "SUBSEQUENCE WITH MAX LENGTH: " << endl;
     for (i = 0; i < maxL; i++)
     {
         cout << maxFirstElement * pow(maxQ, i) << "  ";
